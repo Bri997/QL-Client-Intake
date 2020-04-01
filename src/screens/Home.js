@@ -2,12 +2,19 @@ import React from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { Link, Switch } from 'react-router-dom'
+import SectionOne from './SectionOne'
 
-function Home() {
+const Home = () => {
   const { register, handleSubmit, control } = useForm()
 
   const onSubmit = data => {
-    console.log(data)
+    const user = {
+      userEmail: data.email,
+      userPassword: data.password
+    }
+    console.log(user)
   }
 
   return (
@@ -20,7 +27,8 @@ function Home() {
         defaultValue=""
         type="text"
         placeholder="Email"
-        name="email1"
+        // eslint-disable-next-line
+        name="email"
         id="outlined-required"
         label="Email"
         ref={register}
@@ -34,6 +42,7 @@ function Home() {
         defaultValue=""
         type="password"
         placeholder="Password"
+        // eslint-disable-next-line
         name="password"
         id="outlined-required"
         label="Password"
@@ -45,6 +54,21 @@ function Home() {
         Primary
       </Button>
       <hr></hr>
+      <Router>
+        <div>
+          <ul>
+            <li>
+              <Link to="/SectionOne">SectionOne</Link>
+            </li>
+          </ul>
+        </div>
+
+        <Switch>
+          <Route exact path="/SectionOne">
+            <SectionOne />
+          </Route>
+        </Switch>
+      </Router>
     </form>
   )
 }
