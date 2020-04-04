@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Link, Switch } from 'react-router-dom'
 import SectionOne from './SectionOne'
+import PageOne from './PageOne'
 
 const Home = () => {
   const { register, handleSubmit, control } = useForm()
@@ -67,6 +68,8 @@ const Home = () => {
           <Route exact path="/SectionOne">
             <SectionOne />
           </Route>
+          <Route exact path="/PageOne"></Route>
+          <PageOne />
         </Switch>
       </Router>
     </form>
