@@ -1,25 +1,11 @@
 import React from 'react'
 import { Formik, Form, Field, useField, FieldArray } from 'formik'
 import { TextField, Button } from '@material-ui/core'
+import MultiLine from '../components/Multiline'
 import PageOneStyle from './PageOneStyles'
 import SaveIcon from '@material-ui/icons/Save'
 
-const MultiLine = props => {
-  const [field] = useField(props)
-  return (
-    <TextField
-      {...field}
-      placeholder={props.placeholder}
-      variant={props.variant}
-      rows={props.rows}
-      multiline={true}
-      className={props.className}
-      label={props.label}
-    />
-  )
-}
-
-const AddressArray = props => {
+const AddressArray = (props) => {
   const [field, meta] = useField(props)
 
   return (
@@ -48,14 +34,12 @@ const PageOne = () => {
           fein: '',
           website: '',
           addresses: [
-            { mailingAddress: '', sameAsMailing: true, physicalAddress: '' }
+            { mailingAddress: '', sameAsMailing: true, physicalAddress: '' },
           ],
           primaryContactFirstName: '',
           primaryContactLastName: '',
           primaryContactPhone: '',
           primaryContactEmail: '',
-          otherNamedInsured: '',
-          otherFEIN: ''
         }}
       >
         {({ values, errors, isSubmitting }) => (
@@ -160,30 +144,7 @@ const PageOne = () => {
               variant="outlined"
               className={classes.textField}
             />
-            <h2>Other Named Insured(s)</h2>
-            <p>
-              If you own other companies or LLC's, please tell us about those
-              operations.
-            </p>
-            <MultiLine
-              placeholder="If applicable"
-              name="otherNamedInsured"
-              label="Other Insured Operations"
-              variant="outlined"
-              rows={3}
-              fullWidth
-              className={classes.multiLine}
-            />
-            <h2>Other Named Insured FEIN(s)</h2>
-            <Field
-              placeholder="If applicable"
-              name="otherFEIN"
-              type="input"
-              as={TextField}
-              label="Other FEIN"
-              variant="outlined"
-              className={classes.textField}
-            />
+
             <div>
               <Button
                 disabled={isSubmitting}
