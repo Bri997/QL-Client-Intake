@@ -6,14 +6,15 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Link, Switch } from 'react-router-dom'
 import SectionOne from './SectionOne'
 import PageOne from './PageOne'
+import PageTwo from './PageTwo'
 
 const Home = () => {
   const { register, handleSubmit, control } = useForm()
 
-  const onSubmit = data => {
+  const onSubmit = (data) => {
     const user = {
       userEmail: data.email,
-      userPassword: data.password
+      userPassword: data.password,
     }
     console.log(user)
   }
@@ -61,6 +62,12 @@ const Home = () => {
             <li>
               <Link to="/SectionOne">SectionOne</Link>
             </li>
+            <li>
+              <Link to="/PageOne">Page One</Link>
+            </li>
+            <li>
+              <Link to="/PageTwo">Page Two</Link>
+            </li>
           </ul>
         </div>
 
@@ -68,8 +75,13 @@ const Home = () => {
           <Route exact path="/SectionOne">
             <SectionOne />
           </Route>
-          <Route exact path="/PageOne"></Route>
-          <PageOne />
+          <Route exact path="/PageOne">
+            <PageOne />
+          </Route>
+
+          <Route exact path="/PageTwo">
+            <PageTwo />
+          </Route>
         </Switch>
       </Router>
     </form>
