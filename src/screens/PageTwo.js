@@ -1,7 +1,14 @@
 import React from 'react'
-import { Formik, Form, Field, useField, FieldArray } from 'formik'
+import { Formik, Field, FieldArray } from 'formik'
 import MultiLine from '../components/Multiline'
-import { TextField, Button } from '@material-ui/core'
+import {
+  TextField,
+  Button,
+  MenuItem,
+  Select,
+  FormControl,
+  FormHelperText,
+} from '@material-ui/core'
 import PageTwoStyles from './PageTwoStyles'
 import SaveIcon from '@material-ui/icons/Save'
 import DeleteIcon from '@material-ui/icons/Delete'
@@ -17,7 +24,9 @@ const PageTwo = () => {
           otherNamedInsured: '',
           otherNamedInsuredOperations: '',
           otherFEIN: '',
-          ownershipsInfo: [{ name: '', id: uuidv4() }],
+          ownershipsInfo: [
+            { id: uuidv4(), name: '', ownershipPercentage: '', workComp: '' },
+          ],
         }}
       >
         {({ values, errors, isSubmitting }) => (
@@ -65,17 +74,6 @@ const PageTwo = () => {
             <FieldArray name="ownershipsInfo">
               {(arrayHelpers) => (
                 <div>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    size="small"
-                    onClick={() =>
-                      arrayHelpers.push({ name: '', id: uuidv4() })
-                    }
-                  >
-                    + Add a Business
-                  </Button>
-
                   {values.ownershipsInfo.map((ownershipInfo, index) => {
                     console.log(ownershipInfo.name)
 
@@ -87,7 +85,36 @@ const PageTwo = () => {
                           variant="outlined"
                           type="input"
                           as={TextField}
+                          c
                         />
+                        <Field
+                          name={`ownershipsInfo.${index}.ownershipPercentage`}
+                          placeholder="%"
+                          variant="outlined"
+                          type="input"
+                          as={TextField}
+                        />
+                        <Field
+                          as={FormControl}
+                          variant="outlined"
+                          className={classes.formControl}
+                        >
+                          <Field
+                            name={`ownershipsInfo.${index}.workComp`}
+                            type="select"
+                            as={Select}
+                            label="Workers Comp"
+                          >
+                            <MenuItem value="none">
+                              <em>None</em>
+                            </MenuItem>
+                            <MenuItem value="include">Include</MenuItem>
+                            <MenuItem value="exclude">Exclude</MenuItem>
+                          </Field>
+                          <FormHelperText>
+                            Some important helper text
+                          </FormHelperText>
+                        </Field>
                         <Button
                           variant="contained"
                           color="secondary"
@@ -97,13 +124,31 @@ const PageTwo = () => {
                         >
                           Remove
                         </Button>
+                        <div>
+                          <Button
+                            variant="contained"
+                            color="primary"
+                            size="small"
+                            onClick={() =>
+                              arrayHelpers.push({
+                                name: '',
+                                ownershipPercentage: '',
+                                id: uuidv4(),
+                              })
+                            }
+                          >
+                            + Add a Business
+                          </Button>
+                        </div>
                       </div>
                     )
                   })}
                 </div>
               )}
             </FieldArray>
-
+            <div>
+              <hr></hr>
+            </div>
             <div>
               <Button
                 disabled={isSubmitting}
