@@ -1,26 +1,26 @@
 import React from 'react'
 import { Formik, Form, Field, useField, FieldArray } from 'formik'
-import { TextField, Button } from '@material-ui/core'
+import { TextField, Button, Checkbox } from '@material-ui/core'
 import MultiLine from '../components/Multiline'
 import PageOneStyle from './PageOneStyles'
 import SaveIcon from '@material-ui/icons/Save'
 
-const AddressArray = (props) => {
-  const [field, meta] = useField(props)
+// const AddressArray = (props) => {
+//   const [field, meta] = useField(props)
 
-  return (
-    <FieldArray name="addresses">
-      <MultiLine
-        {...field}
-        placeholder={props.placeholder}
-        name={props.name}
-        label={props.label}
-        variant={props.variant}
-        rows={props.rows}
-      />
-    </FieldArray>
-  )
-}
+//   return (
+//     <FieldArray name="addresses">
+//       <MultiLine
+//         {...field}
+//         placeholder={props.placeholder}
+//         name={props.name}
+//         label={props.label}
+//         variant={props.variant}
+//         rows={props.rows}
+//       />
+//     </FieldArray>
+//   )
+// }
 
 const PageOne = () => {
   const classes = PageOneStyle()
@@ -33,9 +33,9 @@ const PageOne = () => {
           businessDescription: '',
           fein: '',
           website: '',
-          addresses: [
-            { mailingAddress: '', sameAsMailing: true, physicalAddress: '' },
-          ],
+          physicalAddress: '',
+          sameAddress: false,
+          mailingAddress: '',
           primaryContactFirstName: '',
           primaryContactLastName: '',
           primaryContactPhone: '',
@@ -93,9 +93,13 @@ const PageOne = () => {
               rows={3}
               fullWidth
               className={classes.multiLine}
-            />
-            <h2>Address</h2>
-            <AddressArray
+            />{' '}
+            <div>
+              Physical address same as mailing ?
+              <Field name="sameAddress" type="checkbox" as={Checkbox} />
+            </div>
+            <h2>Mailing Address</h2>
+            <MultiLine
               placeholder="Mailing Address"
               name="mailingAddress"
               label="Mailing Address"
@@ -104,7 +108,6 @@ const PageOne = () => {
               fullWidth={true}
               className={classes.multiLine}
             />
-            <Button>Add a Physical Address</Button>
             <h2>Primary Contact Name</h2>
             <Field
               placeholder="First Name"
@@ -144,7 +147,6 @@ const PageOne = () => {
               variant="outlined"
               className={classes.textField}
             />
-
             <div>
               <Button
                 disabled={isSubmitting}

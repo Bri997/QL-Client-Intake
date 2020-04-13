@@ -9,6 +9,7 @@ import {
   FormControl,
   FormHelperText,
 } from '@material-ui/core'
+import RadioSelect from '../components/RadioSelect'
 import PageTwoStyles from './PageTwoStyles'
 import SaveIcon from '@material-ui/icons/Save'
 import DeleteIcon from '@material-ui/icons/Delete'
@@ -26,6 +27,17 @@ const PageTwo = () => {
           otherFEIN: '',
           ownershipsInfo: [
             { id: uuidv4(), name: '', ownershipPercentage: '', workComp: '' },
+          ],
+          locations: [
+            {
+              id: uuidv4(),
+              locationAddress: '',
+              locationOperations: '',
+              buildingOwner: '',
+              LeaseSpaceToOthers: false,
+              buildingConstructionInfo: '',
+              buildingContentsValue: '',
+            },
           ],
         }}
       >
@@ -147,6 +159,74 @@ const PageTwo = () => {
               )}
             </FieldArray>
             <div>
+              <div>
+                <h2>Location Information </h2>
+                <FieldArray name="locations">
+                  {(arrayHelpers) => (
+                    <div>
+                      {values.locations.map((location, index) => {
+                        return (
+                          <div key={location.id}>
+                            <Field
+                              name={`location.${index}.locationAddress`}
+                              placeholder="locationAddress"
+                              variant="outlined"
+                              type="input"
+                              as={TextField}
+                            />
+                            <Field
+                              name={`location.${index}.locationOperations`}
+                              placeholder="operations"
+                              variant="outlined"
+                              type="input"
+                              as={TextField}
+                            />
+
+                            <RadioSelect
+                              name={`location.${index}.buildingOwner`}
+                              type="radio"
+                              value="yes"
+                              label="Yes"
+                            />
+                            <RadioSelect
+                              name={`location.${index}.buildingOwner`}
+                              type="radio"
+                              value="no"
+                              label="No"
+                            />
+
+                            <Button
+                              variant="contained"
+                              color="secondary"
+                              className={classes.button}
+                              startIcon={<DeleteIcon />}
+                              onClick={() => arrayHelpers.remove(index)}
+                            >
+                              Remove
+                            </Button>
+                            <div>
+                              <Button
+                                variant="contained"
+                                color="primary"
+                                size="small"
+                                onClick={() =>
+                                  arrayHelpers.push({
+                                    name: '',
+                                    ownershipPercentage: '',
+                                    id: uuidv4(),
+                                  })
+                                }
+                              >
+                                + Add another location
+                              </Button>
+                            </div>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  )}
+                </FieldArray>
+              </div>
               <hr></hr>
             </div>
             <div>
