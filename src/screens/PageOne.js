@@ -2,7 +2,7 @@ import React from 'react'
 import { Formik, Form, Field, useField, FieldArray } from 'formik'
 import { TextField, Button, Checkbox } from '@material-ui/core'
 import MultiLine from '../components/Multiline'
-import PageOneStyle from './PageOneStyles'
+import PageOneStyles from './PageOneStyles'
 import SaveIcon from '@material-ui/icons/Save'
 
 // const AddressArray = (props) => {
@@ -23,7 +23,7 @@ import SaveIcon from '@material-ui/icons/Save'
 // }
 
 const PageOne = () => {
-  const classes = PageOneStyle()
+  const classes = PageOneStyles()
   return (
     <div className={classes.root}>
       Page One

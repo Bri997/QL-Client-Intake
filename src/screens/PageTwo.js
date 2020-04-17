@@ -18,7 +18,7 @@ import { v4 as uuidv4 } from 'uuid'
 const PageTwo = () => {
   const classes = PageTwoStyles()
   return (
-    <div className={classes.root}>
+    <div className={classes.main}>
       Page Two
       <Formik
         initialValues={{
@@ -34,7 +34,7 @@ const PageTwo = () => {
               locationAddress: '',
               locationOperations: '',
               buildingOwner: '',
-              LeaseSpaceToOthers: false,
+              LeaseSpaceToOthers: '',
               buildingConstructionInfo: '',
               buildingContentsValue: '',
             },
@@ -87,8 +87,6 @@ const PageTwo = () => {
               {(arrayHelpers) => (
                 <div>
                   {values.ownershipsInfo.map((ownershipInfo, index) => {
-                    console.log(ownershipInfo.name)
-
                     return (
                       <div key={ownershipInfo.id}>
                         <Field
@@ -143,13 +141,14 @@ const PageTwo = () => {
                             size="small"
                             onClick={() =>
                               arrayHelpers.push({
+                                id: uuidv4(),
                                 name: '',
                                 ownershipPercentage: '',
-                                id: uuidv4(),
+                                workComp: '',
                               })
                             }
                           >
-                            + Add a Business
+                            + Add a Owner
                           </Button>
                         </div>
                       </div>
@@ -168,31 +167,75 @@ const PageTwo = () => {
                         return (
                           <div key={location.id}>
                             <Field
-                              name={`location.${index}.locationAddress`}
+                              name={`locations.${index}.locationAddress`}
                               placeholder="locationAddress"
                               variant="outlined"
                               type="input"
                               as={TextField}
                             />
+                            <h2>
+                              Description of operations (Office, Storage,
+                              Warehouse, Manufacturing, etc)
+                            </h2>
                             <Field
-                              name={`location.${index}.locationOperations`}
+                              name={`locations.${index}.locationOperations`}
                               placeholder="operations"
                               variant="outlined"
                               type="input"
                               as={TextField}
                             />
-
+                            <h2>Are you the building owner?</h2>
                             <RadioSelect
-                              name={`location.${index}.buildingOwner`}
+                              name={`locations.${index}.buildingOwner`}
                               type="radio"
                               value="yes"
                               label="Yes"
                             />
                             <RadioSelect
-                              name={`location.${index}.buildingOwner`}
+                              name={`locations.${index}.buildingOwner`}
                               type="radio"
                               value="no"
                               label="No"
+                            />
+                            <h2>Do you lease any space to others?</h2>
+                            <RadioSelect
+                              name={`locations.${index}.LeaseSpaceToOthers`}
+                              type="radio"
+                              value="yes"
+                              label="Yes"
+                            />
+                            <RadioSelect
+                              name={`locations.${index}.LeaseSpaceToOthers`}
+                              type="radio"
+                              value="no"
+                              label="No"
+                            />
+                            <h2>Location construction information</h2>
+                            <p>
+                              Does the building have sprinklers? Does it have a
+                              basement? When was the last time roof, HVAC,
+                              electrical, and/or plumbing updated?
+                            </p>
+                            <MultiLine
+                              placeholder="If applicable"
+                              name={`locations.${index}.buildingConstructionInfo`}
+                              label="Location construction information"
+                              variant="outlined"
+                              rows={3}
+                              fullWidth
+                              className={classes.multiLine}
+                            />
+                            <h2>Location value of contents</h2>
+                            <p>
+                              If we took all contents out of your building and
+                              set them outside, what would be the total value?{' '}
+                            </p>
+                            <Field
+                              name={`locations.${index}.buildingContentsValue`}
+                              placeholder="Value"
+                              variant="outlined"
+                              type="input"
+                              as={TextField}
                             />
 
                             <Button
@@ -204,6 +247,7 @@ const PageTwo = () => {
                             >
                               Remove
                             </Button>
+
                             <div>
                               <Button
                                 variant="contained"
@@ -211,9 +255,13 @@ const PageTwo = () => {
                                 size="small"
                                 onClick={() =>
                                   arrayHelpers.push({
-                                    name: '',
-                                    ownershipPercentage: '',
                                     id: uuidv4(),
+                                    locationAddress: '',
+                                    locationOperations: '',
+                                    buildingOwner: '',
+                                    LeaseSpaceToOthers: '',
+                                    buildingConstructionInfo: '',
+                                    buildingContentsValue: '',
                                   })
                                 }
                               >
@@ -223,11 +271,11 @@ const PageTwo = () => {
                           </div>
                         )
                       })}
+                      <hr></hr>
                     </div>
                   )}
                 </FieldArray>
               </div>
-              <hr></hr>
             </div>
             <div>
               <Button

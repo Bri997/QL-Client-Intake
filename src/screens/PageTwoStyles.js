@@ -1,9 +1,10 @@
 import { makeStyles } from '@material-ui/core/styles'
 
-const pageTwoStyle = makeStyles((theme) => ({
-  root: {
+const pageTwoStyles = makeStyles((theme) => ({
+  main: {
     display: 'flex',
     flexWrap: 'wrap',
+    margin: theme.spacing(10),
   },
   textField: {
     marginLeft: theme.spacing(5),
@@ -24,4 +25,4 @@ const pageTwoStyle = makeStyles((theme) => ({
   },
 }))
 
-export default pageTwoStyle
+export default pageTwoStyles

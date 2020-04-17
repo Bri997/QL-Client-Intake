@@ -7,6 +7,7 @@ import { Link, Switch } from 'react-router-dom'
 import SectionOne from './SectionOne'
 import PageOne from './PageOne'
 import PageTwo from './PageTwo'
+import PageThree from './PageThree'
 
 const Home = () => {
   const { register, handleSubmit, control } = useForm()
@@ -68,6 +69,9 @@ const Home = () => {
             <li>
               <Link to="/PageTwo">Page Two</Link>
             </li>
+            <li>
+              <Link to="/PageThree">Page Three</Link>
+            </li>
           </ul>
         </div>
 
@@ -81,6 +85,9 @@ const Home = () => {
 
           <Route exact path="/PageTwo">
             <PageTwo />
+          </Route>
+          <Route exact path="/PageThree">
+            <PageThree />
           </Route>
         </Switch>
       </Router>
