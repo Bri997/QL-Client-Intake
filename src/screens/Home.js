@@ -8,7 +8,7 @@ import SectionOne from './SectionOne'
 import PageOne from './PageOne'
 import PageTwo from './PageTwo'
 import PageThree from './PageThree'
-
+import SignUp from './SignUp'
 const Home = () => {
   const { register, handleSubmit, control } = useForm()
 
@@ -16,12 +16,13 @@ const Home = () => {
     const user = {
       userEmail: data.email,
       userPassword: data.password,
+      userConfirmPassword: data.confirmPassword,
     }
     console.log(user)
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form action="/signup" onSubmit={handleSubmit(onSubmit)}>
       <h2>Log In</h2>
       <Controller
         as={TextField}
@@ -52,9 +53,23 @@ const Home = () => {
         ref={register}
         variant="outlined"
       />
+      <Controller
+        as={TextField}
+        name="TextField"
+        control={control}
+        defaultValue=""
+        type="password"
+        placeholder="Confirm Password"
+        // eslint-disable-next-line
+        name="confirmPassword"
+        id="outlined-required"
+        label="Confirm Password"
+        ref={register}
+        variant="outlined"
+      />
 
       <Button variant="contained" color="primary" type="submit">
-        Primary
+        Submit
       </Button>
       <hr></hr>
       <Router>
@@ -72,6 +87,9 @@ const Home = () => {
             <li>
               <Link to="/PageThree">Page Three</Link>
             </li>
+            <li>
+              <Link to="/SignUp">SignUp</Link>
+            </li>
           </ul>
         </div>
 
@@ -88,6 +106,9 @@ const Home = () => {
           </Route>
           <Route exact path="/PageThree">
             <PageThree />
+          </Route>
+          <Route exact path="/SignUp">
+            <SignUp />
           </Route>
         </Switch>
       </Router>
