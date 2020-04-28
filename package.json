@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "@aws-amplify/cli": "^4.18.1",
+    "@aws-amplify/ui-react": "^0.2.4",
     "@material-ui/core": "^4.9.7",
     "@material-ui/icons": "^4.9.1",
     "@testing-library/jest-dom": "^4.2.4",
@@ -12,6 +13,7 @@
     "@testing-library/user-event": "^7.2.1",
     "amazon-cognito-identity-js": "^4.2.2",
     "amazon-cognito-js": "^1.1.0",
+    "aws-amplify": "^3.0.9",
     "aws-sdk": "^2.663.0",
     "formik": "^2.1.4",
     "react": "^16.13.1",
