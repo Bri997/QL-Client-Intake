@@ -1,7 +1,7 @@
 {
   "name": "client-intake-form",
   "version": "0.1.0",
-  "proxy": "http://localhost:8080",
+  "proxy": "",
   "private": true,
   "dependencies": {
     "@aws-amplify/cli": "^4.18.1",
@@ -14,6 +14,7 @@
     "amazon-cognito-identity-js": "^4.2.2",
     "amazon-cognito-js": "^1.1.0",
     "aws-amplify": "^3.0.9",
+    "aws-amplify-react": "^4.1.8",
     "aws-sdk": "^2.663.0",
     "formik": "^2.1.4",
     "react": "^16.13.1",

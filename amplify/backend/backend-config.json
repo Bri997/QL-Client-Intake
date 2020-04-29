@@ -1,1 +1,10 @@
-{}
+{
+	"auth": {
+		"clientintakeform8a3279e5": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"customAuth": false
+		}
+	}
+}

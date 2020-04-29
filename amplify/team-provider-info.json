@@ -10,6 +10,11 @@
             "StackName": "amplify-clientintakeform-dev-140437",
             "StackId": "arn:aws:cloudformation:us-east-1:738786693903:stack/amplify-clientintakeform-dev-140437/ba995d90-897a-11ea-9625-125f4521752f",
             "AmplifyAppId": "d3byb8mlrqlkfm"
+        },
+        "categories": {
+            "auth": {
+                "clientintakeform8a3279e5": {}
+            }
         }
     }
 }

@@ -3,8 +3,11 @@ import './App.css'
 
 import Home from './screens/Home'
 
+import Amplify from 'aws-amplify'
+import awsExports from './aws-exports'
+import { withAuthenticator } from 'aws-amplify-react'
 
-  
+Amplify.configure(awsExports)
 
 function App() {
   return (
@@ -18,4 +21,4 @@ function App() {
   )
 }
 
-export default App
+export default withAuthenticator(App)
