@@ -4,7 +4,11 @@ const pageTwoStyles = makeStyles((theme) => ({
   main: {
     display: 'flex',
     flexWrap: 'wrap',
-    margin: theme.spacing(10),
+
+    padding: 20,
+    borderRadius: 10,
+    margin: 30,
+    background: '#ece9e6' /* fallback for old browsers */,
   },
   textField: {
     marginLeft: theme.spacing(5),

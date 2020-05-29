@@ -1,14 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles'
 
-const pageOneStyles = makeStyles((theme) => ({
+const HomeStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
-
-    padding: 20,
-    borderRadius: 10,
-    margin: 30,
-    background: '#ece9e6' /* fallback for old browsers */,
   },
   textField: {
     marginLeft: theme.spacing(5),
@@ -23,4 +18,4 @@ const pageOneStyles = makeStyles((theme) => ({
   },
 }))
 
-export default pageOneStyles
+export default HomeStyles

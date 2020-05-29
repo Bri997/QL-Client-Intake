@@ -1,3 +1,11 @@
+.App {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hydrated {
+  padding-top: 5vw;
+}
 .App-header {
-  text-align: center;
+  align-self: flex-start;
 }
