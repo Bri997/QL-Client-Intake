@@ -38,7 +38,7 @@ const SignUp = () => {
     Name: 'phone_number',
     Value: '+15555555555',
   }
-  var attributeEmail = new AmazonCognitoIdentity.CognitoUserAttribute(dataEmail)
+  var attributeEmail = new AmazonCognitoIdentity.CognitoUserAttribute()
   var attributePhoneNumber = new AmazonCognitoIdentity.CognitoUserAttribute(
     dataPhoneNumber
   )
@@ -46,12 +46,12 @@ const SignUp = () => {
   attributeList.push(attributeEmail)
   attributeList.push(attributePhoneNumber)
 
-  userPool.signUp('username', 'password', attributeList, null, function (
+  userPool.signUp('username', 'password', attributeList, null, function(
     err,
     result
   ) {
     if (err) {
-      alert(err.message || JSON.stringify(err))
+      console.log(err.message || JSON.stringify(err))
       return
     }
     var cognitoUser = result.user
